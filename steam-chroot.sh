@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xhost +local
+xhost +local:
 
 # path to game partition
 game_part="PARTITION_PATH"
@@ -36,6 +36,7 @@ mount -vR /var/db/repos/gentoo "${chroot_dir}/var/db/repos/gentoo"
 
 mount --bind -v /var/lib/dbus "${chroot_dir}/var/lib/dbus"
 mount --bind -v /home/jannis/.config/pulse "${chroot_dir}/home/steam/.config/pulse"
+touch "${chroot_dir}/home/steam/.pulse-cookie"
 mount --bind /home/jannis/.pulse-cookie "${chroot_dir}/home/steam/.pulse-cookie"
 mount -vR /tmp "${chroot_dir}/tmp"
 mount -vR /dev/shm "${chroot_dir}/dev/shm"
@@ -66,4 +67,4 @@ umount -vl "${chroot_dir}/usr/src/linux"
 # unmount the game directory
 umount -v "${chroot_dir}/games"
 
-xhost -local
+xhost -local:
